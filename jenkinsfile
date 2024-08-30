@@ -24,7 +24,7 @@ pipeline {
 
         stage('Run Postman Collection') {
             steps {
-                sh 'newman run  /newman/reports/NewCollection.json -r cli,htmlextra  --reporter-htmlextra-export /newman/reports/'
+                sh 'newman run  /newman-reports/NewCollection.json -r cli,htmlextra  --reporter-htmlextra-export /newman-reports/'
             }
         }
         
