@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/Joshisumedhraj/BloqWeb-demo.git', branch: 'main'
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         git url: 'https://github.com/Joshisumedhraj/BloqWeb-demo.git', branch: 'main'
+        //     }
+        // }
 
       
         // stage('Install Dependencies') {
@@ -24,7 +24,7 @@ pipeline {
 
         stage('Run Postman Collection') {
             steps {
-                sh 'newman run Health-Check.postman_collection.json -r cli,htmlextra  --reporter-htmlextra-export /newman/reports/'
+                sh 'newman run  /newman/reports/NewCollection.json -r cli,htmlextra  --reporter-htmlextra-export /newman/reports/'
             }
         }
         
@@ -39,17 +39,17 @@ pipeline {
         // }
     }
 
-    post {
-        success {
-            publishHTML(target: [
-                reportName: 'My Report',
-                reportDir: 'htmlreports/Bloqweb_20HTML_20Report',
-                reportFiles: 'index.html',
-                keepAll: true,
-                alwaysLinkToLastBuild: true,
-                allowMissing: false
-            ])
-        }
-    }
+    //post {
+        // success {
+        //     publishHTML(target: [
+        //         reportName: 'My Report',
+        //         reportDir: 'htmlreports/Bloqweb_20HTML_20Report',
+        //         reportFiles: 'index.html',
+        //         keepAll: true,
+        //         alwaysLinkToLastBuild: true,
+        //         allowMissing: false
+        //     ])
+        // }
+    //}
 
 }
